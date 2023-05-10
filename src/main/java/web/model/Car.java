@@ -1,13 +1,15 @@
 package web.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Car {
     private String model;
     private int series;
     private String engine;
 
-    public Car() {
-    }
+    public Car() {}
 
     public Car(String model, int series, String engine) {
         this.model = model;
@@ -37,5 +39,14 @@ public class Car {
 
     public void setEngine(String engine) {
         this.engine = engine;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "model='" + model + '\'' +
+                ", series=" + series +
+                ", engine='" + engine + '\'' +
+                '}';
     }
 }
