@@ -16,21 +16,15 @@ public class CarController {
 
     @GetMapping("/cars")
     public String getCars(@RequestParam(value = "count", required = false) Integer count, Model model) {
-        List<Car> list = new ArrayList<>();
-        list.add(new Car("Vaz", 2112, "1.5L - 91 horse power"));
-        list.add(new Car("Toyota", 4, "v6"));
-        list.add(new Car("Ford", 2, "2.0L - 129 horse power"));
-        list.add(new Car("Nissan", 2007, "v8"));
-        list.add(new Car("Vaz", 2114, "1.5L - 91 horse power"));
         CarService carService = new CarServiceImpl();
-        List<Car> list2 = null;
+
+        Integer limit = null;
         if (count != null) {
-            list2 = carService.getListCars(count.intValue(), list);
-        } else {
-            list2 = carService.getListCars(list.size(), list);
+            limit = count.intValue();
         }
-//        List<Car> list2 = carService.getListCars(count, list);
-        model.addAttribute("cars", list2);
+
+        List<Car> list = carService.getListCars(limit);
+        model.addAttribute("cars", list);
         return "cars";
     }
 }
